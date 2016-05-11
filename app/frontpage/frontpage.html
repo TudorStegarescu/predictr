@@ -1,0 +1,19 @@
+<table class="table table-hover table-mc-light-blue">
+    <thead>
+        <tr>
+            <th>Name </th>
+            <th>Date </th>
+            <th>Status </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr ng-repeat="contact in contacts">
+            <td><!-- <a href="#/contact/{{contact.index}}"> -->{{contact.awayTeamName}} <div class="goals"><b>{{contact.result.goalsAwayTeam}}</b> - <b>{{contact.result.goalsHomeTeam}}</b></div> {{contact.homeTeamName}}</td>
+            <!-- <td style="width:50px" > <img width="70px" ng-src="{{contact.crestUrl}}" alt="Description" /> </td> -->
+            <td>{{contact.date | date : 'EEEE'}}, {{contact.date | date : longdate}}</td>   
+            <td>{{contact.status}}</td>            
+            <td><p ng-repeat="friend in contact.friends">{{friend.name}}</p></td>                        
+        </tr>
+    </tbody>
+</table>
