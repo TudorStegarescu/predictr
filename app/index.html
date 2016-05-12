@@ -13,13 +13,15 @@
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
   <link rel="stylesheet" href="app.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../node_modules/angular-material/angular-material.min.css">
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 
 </head>
 <body>
   <ul class="menu">
-    <li><a href="#/frontpage">Frontpage</a></li>
-    <li><a href="#/user">User profile</a></li>
+    <li><md-button href="#/frontpage" class="md-raised md-primary" >Frontpage</md-button></li> 
+    <li><md-button href="#/user" class="md-raised md-primary" >User profile</md-button></li> 
+    <li><md-button ng-controller="showDialog" class="md-raised md-primary" ng-click="showTabDialog($event)">Sign in / up</md-button></li>                     
   </ul>
 
   <!--[if lt IE 7]>
@@ -35,15 +37,21 @@
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="components/angular-sanitize.min.js"></script>
   <script src="bower_components/Chart.js/Chart.min.js"></script>
-  <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
   <script src="app.js"></script>
   <script src="services.js"></script>
   <script src="frontpage/frontpage.js"></script>
   <script src="frontpage/detail.js"></script>
+  <script src="user/userProfile.js"></script>
   <script src="user/user.js"></script>
 
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>
+
+  <script src="../node_modules/angular-animate/angular-animate.min.js"></script>
+  <script src="../node_modules/angular-aria/angular-aria.min.js"></script>
+  <script src="../node_modules/angular-material/angular-material.min.js"></script>
+  <script src="../node_modules/angular-messages/angular-messages.min.js"></script>
+  <script src="../node_modules/angularfire/dist/angularfire.min.js"></script>
 </body>
 </html>

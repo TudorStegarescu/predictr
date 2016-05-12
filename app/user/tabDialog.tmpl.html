@@ -1,0 +1,43 @@
+<md-dialog aria-label="Mango (Fruit)">
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Join Us</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="img/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="min-width:400px; max-width:800px;max-height:810px; ">
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="Sign Up">
+                    <md-content class="md-padding">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <input ng-model="user.email" type="email" placeholder="Email (required)" ng-required="true">
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <input ng-model="user.password" type="password" required placeholder="Set A Password" />
+                        </md-input-container>
+                        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                          <md-button  ng-click="create(user)" class="md-raised md-primary">Sign up</md-button>
+                        </section>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Sign in">
+                    <md-content class="md-padding">
+                      <md-input-container class="md-block" flex-gt-sm>
+                            <input ng-model="userlogin.email" type="email" placeholder="Email (required)" ng-required="true">
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <input ng-model="userlogin.password" type="password" required placeholder="Set A Password" />
+                        </md-input-container>
+                        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                          <md-button ng-click="login(userlogin)"  class="md-raised md-primary">Sign up</md-button>
+                        </section>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+        </md-dialog-content>
+    </form>
+</md-dialog>

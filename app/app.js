@@ -3,12 +3,19 @@
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
   'ngRoute',
-  'myApp.view1',
-  'myApp.user',
+  'ngMaterial',
+  'myApp.frontPage',
+  'myApp.userProfile',
+  'myApp.showDialog',  
   'myApp.detail',  
   'myApp.version'
-]).
-config(['$routeProvider', function($routeProvider) {
+])
+.config(function($mdThemingProvider) {
+  $mdThemingProvider.theme('default')
+    .primaryPalette('blue') 
+    .accentPalette('light-blue');
+})
+.config(['$routeProvider', function($routeProvider) {
   $routeProvider
     .when('/contact/:contactId', {
         templateUrl: 'view1/detail.html',

@@ -1,33 +1,53 @@
 'use strict';
 
-angular.module('myApp.user', ['ngRoute'])
+angular.module('myApp.showDialog',['ngMaterial', 'ngMessages', 'firebase'])
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/user', {
-    templateUrl: 'user/user.html',
-    controller: 'GraphCtrl'
-  });
-}])
+.controller('showDialog', function($scope, $mdDialog, $mdMedia) {
+  $scope.status = '  ';
+  $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 
-.controller("GraphCtrl", function ($scope, $http) {
-	$http.get('/app/data.json').success(function(data) {
+  $scope.showAlert = function(ev) {
+    // Appending dialog to document.body to cover sidenav in docs app
+    // Modal dialogs should fully cover application
+    // to prevent interaction outside of dialog
+    $mdDialog.show(
+      $mdDialog.alert()
+        .parent(angular.element(document.querySelector('#popupContainer')))
+        .clickOutsideToClose(true)
+        .title('This is an alert title')
+        .textContent('You can specify some description text in here.')
+        .ariaLabel('Alert Dialog Demo')
+        .ok('Got it!')
+        .targetEvent(ev)
+    );
+  };
 
-    $scope.data = data;
-
-    $scope.width = 900;
-    $scope.bheight = 400;
-    $scope.yAxis = "Age";
-    $scope.xAxis = "Contacte";
-
-    $scope.max = 0;
-    var arrLength = data.length;
-
-    for (var i = 0; i < arrLength; i++) {
-      // Find $scope.maximum X Axis Value
-      if (data[i].age > $scope.max)
-        $scope.max = data[i].age;
-    }
-
-  });
-  
+  $scope.showTabDialog = function(ev) {
+    $mdDialog.show({
+      controller: DialogController,
+      templateUrl: 'user/tabDialog.tmpl.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true
+    })
+        .then(function(answer) {
+          $scope.status = 'You said the information was "' + answer + '".';
+        }, function() {
+          $scope.status = 'You cancelled the dialog.';
+        });
+  };
 });
+
+function DialogController($scope, $mdDialog) {
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+
+  $scope.answer = function(answer) {
+    $mdDialog.hide(answer);
+  };
+}
