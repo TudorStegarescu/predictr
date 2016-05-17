@@ -1,0 +1,37 @@
+<div class="wrap">
+	<div id="teachergallery">
+
+		<h1>{{contact.name}}</h1>
+		<h1>{{contact.$index}}</h1>
+
+		<div class="bio">
+			<div ng-show="show==0">
+				<p>{{contact.about}}</p>
+			</div>	
+			<div ng-show="show==1">
+				<p>{{contact.balance}}</p>
+			</div>	
+			<div ng-show="show==2">
+				<p>{{contact.phone}}</p>
+			</div>	
+			<div ng-show="show==3">
+				<p>{{contact.address}}</p>
+			</div>	
+			<div ng-show="show==4">
+				<p>{{contact.greeting}}</p>
+			</div>	
+		</div>
+
+		<div class="navi">
+			<ul>
+				<li><a ng-click="show = 0">about</a></li>
+				<li><a ng-click="show = 1">balance</a></li>
+				<li><a ng-click="show = 2">phone</a></li>
+				<li><a ng-click="show = 3">address</a></li>
+				<li><a ng-click="show = 4">inbox</a></li>
+			</ul>
+		</div>
+
+
+			</div>
+		</div>

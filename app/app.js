@@ -5,6 +5,7 @@ angular.module('myApp', [
   'ngRoute',
   'ngMaterial',
   'myApp.frontPage',
+  'myApp.betting',
   'myApp.userProfile',
   'myApp.showDialog',  
   'myApp.detail',  
