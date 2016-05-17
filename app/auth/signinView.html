@@ -1,0 +1,12 @@
+<md-content class="l-content">
+  <h1 class="md-display-2">Login</h1>
+  <md-input-container>
+    <label>Email</label>
+    <input ng-model="auth.email" type="text">
+  </md-input-container>
+  <md-input-container>
+    <label>Password</label>
+    <input type="password" ng-model="auth.password" type="text">
+  </md-input-container>
+  <md-button class="md-raised md-warn" ng-click="auth.login()">Login</md-button>
+</md-content>

@@ -1,0 +1,36 @@
+<md-content class="l-content">
+  <h1 layout-fill>Register</h1>
+  <br/>
+  <md-input-container class="md-icon-float md-block">
+    <label>First Name</label>
+    <md-icon md-font-set="material-icons"> person </md-icon>
+    <input ng-model="auth.firstname" type="text">
+  </md-input-container>
+  <md-input-container class="md-icon-float md-block">
+    <label>Last Name</label>
+    <md-icon md-font-set="material-icons"> person_outline </md-icon>
+    <input ng-model="auth.lastname" type="text">
+  </md-input-container>
+  <md-input-container class="md-icon-float md-block">
+    <label>Email</label>
+    <md-icon md-font-set="material-icons"> mail_outline </md-icon>
+    <input ng-model="auth.email" type="text">
+  </md-input-container>
+  <md-input-container class="md-icon-float md-block">
+    <label>Password</label>
+    <md-icon md-font-set="material-icons"> fingerprint </md-icon>
+    <input type="password" ng-model="auth.password" type="text">
+  </md-input-container>
+  <md-input-container ng-controller="listTeams" class="md-block" flex-gt-sm>
+    <label>Favourite team</label>
+    <md-icon md-font-set="material-icons"> favorite_border </md-icon>
+    <md-select ng-model="auth.team">
+      <md-option ng-repeat="team in teams" value="{{team.id}}" placeholder="Favourite team">
+        {{team.title}}
+      </md-option>
+    </md-select>
+  </md-input-container>
+  <md-input-container class="md-icon-float md-block">
+    <md-button class="md-raised md-primary" ng-click="auth.createUser()">Register</md-button>
+  </md-input-container>
+</md-content>
