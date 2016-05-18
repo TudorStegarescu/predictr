@@ -1,0 +1,13 @@
+<table class="table table-hover table-mc-light-blue">
+    <tbody>
+        <tr ng-repeat="contact in contacts" layout-xs="center" >
+            <td>{{contact.awayTeamName}}</td>
+            <td> <input type="number" ngMinlength="1" min="0" max="9" class="betInput" ng-model="awayTeamBet" style="text-align: center" />   -  <input  type="number" ngMaxlength="1" min="0" max="9"  class="betInput" ng-model="homeTeamBet" style="text-align: center" /> </td>
+            <td>{{contact.homeTeamName}}</td>
+
+        </tr>
+    </tbody>
+</table>
+<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+    <md-button data-value="Submit"> Submit</md-button>
+</section>
