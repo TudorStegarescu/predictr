@@ -10,6 +10,23 @@
             <td>{{contact.awayTeamName}}</td>
             <td>{{contact.result.goalsAwayTeam}} - {{contact.result.goalsHomeTeam}}</td>
             <td>{{contact.homeTeamName}}</td>
+
         </tr>
     </tbody>
 </table>
+
+<table class="table table-hover table-mc-light-blue">
+    <thead>
+    <tr>
+        <td style=' background: #edeeec; font-weight: bold' colspan="3" ><h2>Header Timed - filtered by date</h2></td>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr ng-repeat="contact in contacts | checkStatus:'TIMED' " layout-xs="center">
+        <td>{{contact.awayTeamName}}</td>
+        <td>{{contact.result.goalsAwayTeam}} - {{contact.result.goalsHomeTeam}}</td>
+        <td>{{contact.homeTeamName}}</td>
+    </tr>
+    </tbody>
+</table>s
