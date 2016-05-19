@@ -1,53 +1,35 @@
 <md-content class="l-content">
-  <md-list>
     <md-header layout="row" layout-align="center center">
       <div>
          <h2>Header Timed - filtered by date</h2>
       </div>
     </md-header>
-    <md-list-item class="md-3-line" ng-repeat="predict in predicts">
-      <div class="md-list-item-text" layout="row" layout-align="end center">
-        <div layout="row" layout-align="end center">
-          <div>
-            <h3>{{predict.awayTeamName}}</h3>
-          </div>
-            <md-input-container>
-                <input type="number"
-                       ngMinlength="1"
-                       aria-label="score"
-                       min="0"
-                       max="9"
-                       class="betInput"
-                       ng-model="awayTeamBet"
-                       style="text-align: center" />
-            </md-input-container>
-            <div class="divider"></div>
-        </div>
-      </div>
-      <div class="md-list-item-text" layout="row">
-        <div layout="row" layout-align="end center">
-            <div class="divider"></div>
-            <md-input-container>
-                <input type="number"
-                       ngMinlength="1"
-                       aria-label="score"
-                       min="0"
-                       max="9"
-                       class="betInput"
-                       ng-model="homeTeamBet"
-                       style="text-align: center" />
-            </md-input-container>
-            <div>
-              <h3>{{predict.homeTeamName}}</h3>
-            </div>
-        </div>
 
-      </div>
-      </div>
-    </md-list-item>
-  </md-list>
+    <form name="predictionForm" novalidate>
+
+      <md-button ng-disabled="predictionForm.$invalid" class="submit-prediction md-raised md-primary">Submit</md-button>
+
+        <div class="form-group" ng-repeat="predict in predicts" ng-class="{ 'has-error' : userFieldForm.email.$invalid }">
+        <ng-form name="userFieldForm">
+            <label>{{predict.awayTeamName}}</label>
+              <input type="number"
+                     ngMinlength="1"
+                     aria-label="score"
+                     min="0"
+                     max="9"
+                     class="betInput"
+                     ng-model="input.text"
+                     style="text-align: center" required/>
+             <input type="number"
+                    ngMinlength="1"
+                    aria-label="score"
+                    min="0"
+                    max="9"
+                    class="betInput"
+                    ng-model="homeTeamBet"
+                    style="text-align: center" required/>
+            <label>{{predict.homeTeamName}}</label>
+        </ng-form>
+        </div>
+    </form>
 </md-content>
-
-<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-    <md-button class="md-primary md-raised">Submit</md-button>
-</section>
