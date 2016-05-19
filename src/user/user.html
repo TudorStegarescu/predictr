@@ -1,0 +1,27 @@
+<h1></h1>
+
+<div ng-cloak>
+  <md-content class="l-content">
+    <h1>User profile</h1>
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="First Name">
+        <md-content class="md-padding">
+          <h1 class="md-display-2">First Name</h1>
+          <p>{{userinfo.firstname}}</p>
+        </md-content>
+      </md-tab>
+      <md-tab label="Last Name">
+        <md-content class="md-padding">
+          <h1 class="md-display-2">Last Name</h1>
+          <p>{{userinfo.lastname}}</p>
+        </md-content>
+      </md-tab>
+      <md-tab label="Email">
+        <md-content class="md-padding">
+          <h1 class="md-display-2">Email</h1>
+          <p>{{userinfo.email}}</p>
+        </md-content>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+</div>

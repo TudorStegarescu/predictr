@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My AngularJS App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="assets/css/app.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../node_modules/angular-material/angular-material.min.css">
+  <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+
+</head>
+<body>
+
+  <md-toolbar md-scroll-shrink ng-if="true">
+    <div class="md-toolbar-tools">
+      <h3>
+        <span>Predictr</span>
+      </h3>
+      <div class="menus" layout-wrap layout="row" layout-fill layout-align="space-between center" style="min-height:100px;">
+        <div layout="column" flex="20" flex-sm="100" layout-align="center center">
+        </div>
+        <div layout="column" flex="20" flex-sm="100" layout-align="center center">
+          <md-button ui-sref="user" class="md-raised md-primary" >User profile</md-button>
+        </div>
+        <div layout="column" flex="20" flex-sm="100" layout-align="center center">
+          <md-button ui-sref="signin" class="md-raised md-primary" >Sign in</md-button>
+        </div>
+        <div layout="column" flex="20" flex-sm="100" layout-align="center center">
+          <md-button ui-sref="signup" class="md-raised md-primary" >Sign up</md-button>
+        </div>
+      </div>
+    </div>
+  </md-toolbar>
+
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+  <div ui-view></div>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="../bower_components/firebase/firebase.js"></script>
+  <script src="../node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+  <script src="../node_modules/angularfire/dist/angularfire.min.js"></script>
+  <script src="../node_modules/angular-animate/angular-animate.min.js"></script>
+  <script src="../node_modules/angular-aria/angular-aria.min.js"></script>
+  <script src="../node_modules/angular-material/angular-material.min.js"></script>
+  <script src="../node_modules/angular-messages/angular-messages.min.js"></script>
+
+  <script src="app.js"></script>
+  <script src="services.js"></script>
+<!--   <script src="userprofile/userProfile.js"></script> -->
+  <script src="user/user.js"></script>
+  <script src="user/userService.js"></script>
+  <script src="auth/authService.js"></script>
+  <script src="auth/authController.js"></script>
+
+</body>
+</html>
