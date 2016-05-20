@@ -5,6 +5,8 @@ angular.module('myApp', [
   'ui.router',
   'ngMaterial',
   'firebase',
+  'myApp.betting',
+  'myApp.frontPage',
   'myApp.userProfile'
 ])
 .config(function($mdThemingProvider) {
@@ -14,6 +16,16 @@ angular.module('myApp', [
 })
 .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
+      .state('betting', {
+        url: '/betting',
+        templateUrl: 'betting/betting.html',
+        controller: 'bettingCtrl as predict'
+      })
+      .state('frontpage', {
+        url: '/frontpage',
+        templateUrl: 'frontpage/frontpage.html',
+        controller: 'frontPageCtrl as predict'
+      })
       .state('user', {
         url: '/user',
         templateUrl: 'user/user.html',
