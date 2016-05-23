@@ -20,7 +20,6 @@
 
                teams.then(function(arrayOfResults) {
                   vm.teams = arrayOfResults.data.teams;
-                  console.log(vm.teams);
                });
          }
      }
