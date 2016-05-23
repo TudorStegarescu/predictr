@@ -45,6 +45,12 @@ angular.module('myApp', [
         url: '/status',
         templateUrl: 'components/status/statusView.html',
         controller: 'StatusController as status'
+      })
+      .state('teams', {
+        url: '/teams',
+        templateUrl: 'teams/teams.html',
+        controller: 'Teams',
+        controllerAs: 'vm'
       });
     })
     .run(function($rootScope, $state, User) {
