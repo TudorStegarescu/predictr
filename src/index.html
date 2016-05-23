@@ -32,14 +32,17 @@
         <div layout="column" flex="15" flex-sm="100" layout-align="center center">
           <md-button ui-sref="betting" class="md-raised md-primary" >Betting</md-button>
         </div>
-        <div layout="column" flex="15" flex-sm="100" layout-align="center center">
+        <div ng-show="loggedIn" layout="column" flex="15" flex-sm="100" layout-align="center center">
           <md-button ui-sref="user" class="md-raised md-primary" >User profile</md-button>
         </div>
-        <div layout="column" flex="15" flex-sm="100" layout-align="center center">
+        <div ng-show="!loggedIn" layout="column" flex="15" flex-sm="100" layout-align="center center">
           <md-button ui-sref="signin" class="md-raised md-primary" >Sign in</md-button>
         </div>
-        <div layout="column" flex="15" flex-sm="100" layout-align="center center">
+        <div ng-show="!loggedIn" layout="column" flex="15" flex-sm="100" layout-align="center center">
           <md-button ui-sref="signup" class="md-raised md-primary" >Sign up</md-button>
+        </div>
+        <div ng-show="loggedIn" layout="column" flex="15" flex-sm="100" layout-align="center center">
+          <md-button ng-click="logout()" class="md-raised md-primary" >Log out</md-button>
         </div>
       </div>
     </div>
@@ -65,6 +68,7 @@
   <script src="betting/betting.js"></script>
   <script src="frontpage/frontpage.js"></script>
   <script src="services.js"></script>
+  <script src="components/firebase.utils.js"></script>
   <script src="user/user.js"></script>
   <script src="teams/teams.js"></script>
   <script src="user/userService.js"></script>

@@ -1,26 +1,25 @@
-<h1></h1>
+<h4></h4>
 
 <div ng-cloak>
   <md-content class="l-content">
-    <h1>User profile</h1>
+    <h4>User profile</h4>
     <md-tabs md-dynamic-height md-border-bottom>
       <md-tab label="First Name">
         <md-content class="md-padding">
-          <h1 class="md-display-2">First Name</h1>
-          <p>{{userinfo.firstname}}</p>
+          <h4 class="md-subhead">{{profile.firstname}}</h4>
+            <br />
         </md-content>
       </md-tab>
       <md-tab label="Last Name">
         <md-content class="md-padding">
-          <h1 class="md-display-2">Last Name</h1>
-          <p>{{userinfo.lastname}}</p>
+          <h4 class="md-subhead">{{profile.lastname}}</h4>
         </md-content>
       </md-tab>
       <md-tab label="Email">
         <md-content class="md-padding">
-          <h1 class="md-display-2">Email</h1>
-          <p>{{userinfo.email}}</p>
+          <h4 class="md-subhead"><a href="mailto:{{profile.email}}">{{profile.email}}</a></h4>
         </md-content>
+        <button ng-click="logout()">Log Out</button>
       </md-tab>
     </md-tabs>
   </md-content>

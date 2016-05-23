@@ -9,6 +9,9 @@ angular.module('myApp', [
   'myApp.frontPage',
   'myApp.userProfile'
 ])
+
+.constant('FBURL', 'https://scorching-heat-8489.firebaseio.com')
+
 .config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
     .primaryPalette('blue')
@@ -29,7 +32,16 @@ angular.module('myApp', [
       .state('user', {
         url: '/user',
         templateUrl: 'user/user.html',
-        controller: 'userProfile as user'
+        controller: 'userProfile',
+        resolve: {
+        // forces the page to wait for this promise to resolve before controller is loaded
+        // the controller can then inject `user` as a dependency. This could also be done
+        // in the controller, but this makes things cleaner (controller doesn't need to worry
+        // about auth status or timing of accessing data or displaying elements)
+        user: ['Auth', function (Auth) {
+          return Auth.$waitForAuth();
+        }]
+      }
       })
       .state('signin', {
         url: '/signin',
@@ -53,24 +65,9 @@ angular.module('myApp', [
         controllerAs: 'vm'
       });
     })
-    .run(function($rootScope, $state, User) {
-
-          // Listen for changes to the state and run the code
-          // in the callback when the change happens
-          $rootScope.$on('$stateChangeStart', function() {
-
-            // Use the User service to get the currently
-            // logged-in user from local storage
-            var loggedInUser = User.getLoggedInUser();
-
-            // Check that we actually have a logged-in user
-            // saved in local storage
-            if(loggedInUser) {
-              // Use the getUserData method on the User service
-              // to grab the data from the /users endpoint in
-              // Firebase for the logged-in user
-              $rootScope.loggedInUserData = User.getUserData(loggedInUser.uid);
-
-            }
-          });
-        });
+    .run(['$rootScope', 'Auth', function($rootScope, Auth) {
+    // track status of authentication
+    Auth.$onAuth(function(user) {
+      $rootScope.loggedIn = !!user;
+    });
+  }]);
