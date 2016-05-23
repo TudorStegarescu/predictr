@@ -16,7 +16,7 @@
 		})
 		.controller('AuthController', AuthController);
 
-	function AuthController($rootScope ,Auth, User, $state) {
+	function AuthController($rootScope, Auth, User, $state) {
 
 		var vm = this;
 
@@ -71,7 +71,7 @@
 				vm.email = null;
 				vm.password = null;
 				$state.go('user');
-				// console.info("Authenticated successfully with payload:", data);
+				//console.info("Authenticated successfully with payload:", data);
 			}).catch(function(error) {
 				console.log(error);
 			});
