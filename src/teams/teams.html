@@ -1,0 +1,27 @@
+<md-content class="l-content">
+  <md-list>
+    <md-header layout="row" layout-align="center center">
+      <div>
+        <h2>Teams</h2>
+      </div>
+    </md-header>
+    <md-list-item class="md-3-line" ng-repeat="team in vm.teams">
+      <div class="md-list-item-text" layout="row" layout-align="end center"  layout-padding layout-margin>
+        <div layout="row" layout-align="end center">
+          <div>
+            <img ng-src="{{team.crestUrl}}" alt="Description"  width='70'/>
+          </div>
+        </div>
+      </div>
+      <div class="md-list-item-text" layout="row" layout-align="start center"  layout-padding layout-margin>
+        <div layout="row">
+          <div>
+            <h3>{{team.name}}</h3>
+            <h4>Market value:{{team.squadMarketValue}}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </md-list-item>
+</md-list>
+</md-content>
