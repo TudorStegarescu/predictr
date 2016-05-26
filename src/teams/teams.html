@@ -6,7 +6,7 @@
       </div>
     </md-header>
 
-    <ul>
+    <ul ng-controller="Teams">
         <li ng-repeat="player in players">{{player.name}}</li>
     </ul>
   <button ng-click="send(team)"
