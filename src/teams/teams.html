@@ -5,17 +5,21 @@
         <h2>Teams</h2>
       </div>
     </md-header>
-    <md-list-item class="md-3-line" ng-repeat="team in vm.teams">
-      <div class="md-list-item-text" layout="row" layout-align="center center"  layout-padding layout-margin>
-        <div layout="row" layout-align="end center">
-          <button class="md-no-style md-button md-ink-ripple"
-                  type="button"
-                  aria-label="Janet Perkins">
-            <img ng-src="{{team.crestUrl}}" alt="Description"  width='70'/>
-            <h3>{{team.name}}</h3>
-            <h4>Market value:{{team.squadMarketValue}}</h4>
-          </button>
-    </div>
-  </md-list-item>
+
+    <ul>
+        <li ng-repeat="player in players">{{player.name}}</li>
+    </ul>
+  <button ng-click="send(team)"
+          ng-repeat="team in teams"
+          class="md-no-style md-button md-ink-ripple"
+          type="button"
+          aria-label="Janet Perkins">
+
+    <md-list-item class="md-4-line"  layout="row" layout-align="start center" layout-padding>
+        <img ng-src="{{team.crestUrl}}" alt="Description"  width='70'/>
+        <h3>{{team.name}}</h3>
+        <h4>Market value:{{team.squadMarketValue}}</h4>
+    </md-list-item>
+  </button>
 </md-list>
 </md-content>

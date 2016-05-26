@@ -84,7 +84,14 @@ body {
 }
 
 .team-listing {
+	button {
+		width: 100%;
+	}
+	img {
+		margin-right: 100px;
+	}
 	@include headings() {
     display: inline-block;
+		width: 30%;
 	}
 }
