@@ -7,6 +7,7 @@ angular.module('myApp', [
   'firebase',
   'myApp.betting',
   'myApp.frontPage',
+  'myApp.teams',
   'myApp.userProfile'
 ])
 
@@ -61,8 +62,7 @@ angular.module('myApp', [
       .state('teams', {
         url: '/teams',
         templateUrl: 'teams/teams.html',
-        controller: 'Teams',
-        controllerAs: 'vm'
+        controller: 'Teams'
       });
     })
     .run(['$rootScope', 'Auth', function($rootScope, Auth) {

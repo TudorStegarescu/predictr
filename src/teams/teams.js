@@ -1,27 +1,47 @@
- (function() {
-     'use strict';
+'use strict';
 
-     angular
-       .module('myApp')
-       .controller('Teams', Teams);
+angular.module('myApp.teams', [])
 
-     Teams.$inject = ['$http', '$q'];
+.controller('Teams', function ($rootScope, $scope, $http, $q, $mdDialog) {
+  var tokenHeader = {headers: {'X-Auth-Token': '822fca9c9da2416592e3e0a8ac86c239'}},
+  teams = $http.get('http://api.football-data.org/v1/soccerseasons/398/teams', tokenHeader);
 
-     /* @ngInject */
-     function Teams($http, $q) {
-         var vm = this;
-         vm.teams = [];
+  teams.then(function(arrayOfResults) {
+    $scope.teams = arrayOfResults.data.teams;
+  });
 
-         activate();
+  function showTabDialog() {
+    $mdDialog.show({
+      controller: DialogController,
+      templateUrl: 'teams/dialog.html',
+      parent: angular.element(document.body),
+      clickOutsideToClose:true
+    })
+    .then(function(answer) {
+      $scope.status = 'You said the information was "' + answer + '".';
+    }, function() {
+      $scope.status = 'You cancelled the dialog.';
+    });
+  };
 
-         function activate() {
-           var tokenHeader = {headers: {'X-Auth-Token': '822fca9c9da2416592e3e0a8ac86c239'}},
-               teams = $http.get('http://api.football-data.org/v1/soccerseasons/398/teams', tokenHeader);
+  $scope.send = function(team){
+    $http.get(team._links.players.href, tokenHeader)
+    .success(function(response) {
+      $rootScope.players = response.players;
+      showTabDialog();
+    });
+  };
+})
 
-               teams.then(function(arrayOfResults) {
-                  vm.teams = arrayOfResults.data.teams;
-                  console.log(vm.teams);
-               });
-         }
-     }
- })();
+function DialogController($rootScope, $scope, $mdDialog) {
+
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+  $scope.answer = function(answer) {
+    $mdDialog.hide(answer);
+  };
+}

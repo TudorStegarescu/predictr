@@ -22,6 +22,14 @@ $font-family_1: 'RobotoDraft', 'Roboto', 'Helvetica Neue, Helvetica, Arial', san
 	}
 }
 
+@mixin headings($from: 1, $to: 6){
+    @for $i from $from through $to{
+      h#{$i}{
+        @content
+      }
+    }
+}
+
 html {
 	position: relative;
 	min-height: 100%;
@@ -73,4 +81,21 @@ body {
 		margin: 0 5px;
 	  padding: 5px 0px 5px 5px;
 	}
+}
+
+.team-listing {
+	button {
+		width: 100%;
+	}
+	img {
+		margin-right: 100px;
+	}
+	@include headings() {
+    display: inline-block;
+		width: 30%;
+	}
+}
+
+.md-dialog-container  .md-dialog {
+	min-width: 500px;
 }

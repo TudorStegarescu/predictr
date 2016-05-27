@@ -1,0 +1,29 @@
+<md-dialog aria-label="Mango (Fruit)"  ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Players</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="assets/img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+
+          <md-list-item class="md-4-line" ng-repeat="player in $root.players" layout="row" layout-align="start center" layout-padding>
+              <h3>{{player.name}}</h3>
+              <h4>{{player.dateOfBirth}}</h4>
+          </md-list-item>
+
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button ng-click="answer('useful')" style="margin-right:20px;">
+        Ok
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
