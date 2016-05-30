@@ -5,7 +5,6 @@ angular.module('myApp.userProfile',['ngMaterial', 'firebase', 'firebase.utils'])
   var unbind;
   var profile = $firebaseObject(fbutil.ref('users', user.uid));
       profile.$bindTo($scope, 'profile').then(function(ub) { unbind = ub; });
-
   $scope.logout = function() {
           if( unbind ) { unbind(); }
           profile.$destroy();

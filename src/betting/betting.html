@@ -1,35 +1,32 @@
 <md-content class="l-content">
-    <md-header layout="row" layout-align="center center">
-      <div>
-         <h2>Header Timed - filtered by date</h2>
-      </div>
-    </md-header>
+  <md-header layout="row" layout-align="center center">
+    <div>
+      <h2>Header Timed - filtered by date</h2>
+    </div>
+  </md-header>
 
-    <form name="predictionForm" novalidate>
+  <form name="predictionForm" ng-submit="addBet()" novalidate>
+    <div class="form-group" ng-repeat="predict in predicts">
+        <label>{{predict.awayTeamName}}</label>
+        <input type="number"
+        ngMinlength="1"
+        aria-label="score"
+        min="0"
+        max="9"
+        class="betInput"
+        ng-model="predicts.away"
+        style="text-align: center" required/>
 
-      <md-button ng-disabled="predictionForm.$invalid" class="submit-prediction md-raised md-primary">Submit</md-button>
-
-        <div class="form-group" ng-repeat="predict in predicts" ng-class="{ 'has-error' : userFieldForm.email.$invalid }">
-        <ng-form name="userFieldForm">
-            <label>{{predict.awayTeamName}}</label>
-              <input type="number"
-                     ngMinlength="1"
-                     aria-label="score"
-                     min="0"
-                     max="9"
-                     class="betInput"
-                     ng-model="input.text"
-                     style="text-align: center" required/>
-             <input type="number"
-                    ngMinlength="1"
-                    aria-label="score"
-                    min="0"
-                    max="9"
-                    class="betInput"
-                    ng-model="homeTeamBet"
-                    style="text-align: center" required/>
-            <label>{{predict.homeTeamName}}</label>
-        </ng-form>
-        </div>
-    </form>
+        <input type="number"
+        ngMinlength="1"
+        aria-label="score"
+        min="0"
+        max="9"
+        class="betInput"
+        ng-model="predicts.home"
+        style="text-align: center" required/>
+        <label>{{predict.homeTeamName}}</label>
+    </div>
+    <md-button ng-disabled="predictionForm.$invalid" type="submit"  class="submit-prediction md-raised md-primary">Submit</md-button>
+  </form>
 </md-content>
