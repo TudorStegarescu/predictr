@@ -20,6 +20,7 @@
 
 		function getLoggedInUser() {
 			var user = localStorage.getItem('firebase:session::myApp');
+			console.log(user);
 			if(user) {
 				return JSON.parse(user);
 			}

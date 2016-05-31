@@ -19,11 +19,17 @@ angular.module('myApp', [
     .accentPalette('light-blue');
 })
 .config(function($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise("/frontpage");
     $stateProvider
       .state('betting', {
         url: '/betting',
         templateUrl: 'betting/betting.html',
-        controller: 'bettingCtrl as predict'
+        controller: 'bettingCtrl as predict',
+        resolve: {
+        user: ['Auth', function (Auth) {
+          return Auth.$waitForAuth();
+        }]
+      }
       })
       .state('frontpage', {
         url: '/frontpage',

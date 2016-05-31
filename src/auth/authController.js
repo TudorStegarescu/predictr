@@ -48,8 +48,6 @@
 					user.email = vm.email;
 					user.team = vm.team;
 
-					$rootScope.userInfo = user;
-
 			user.$save().then(function(success) {
 				vm.firstname = null;
 				vm.lastname = null;
