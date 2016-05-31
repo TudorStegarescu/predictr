@@ -2,13 +2,23 @@
 
 angular.module('myApp.teams', [])
 
-.controller('Teams', function ($rootScope, $scope, $http, $q, $mdDialog) {
-  var tokenHeader = {headers: {'X-Auth-Token': '822fca9c9da2416592e3e0a8ac86c239'}},
-  teams = $http.get('http://api.football-data.org/v1/soccerseasons/398/teams', tokenHeader);
+.controller('Teams', function ($rootScope, $scope, $http, $q, $mdDialog, dataservice) {
+  var tokenHeader = {headers: {'X-Auth-Token': '822fca9c9da2416592e3e0a8ac86c239'}};
 
-  teams.then(function(arrayOfResults) {
-    $scope.teams = arrayOfResults.data.teams;
-  });
+  activate();
+  function activate() {
+    return getTeams().then(function() {
+      console.info('Activated Teams View');
+    });
+  }
+
+  function getTeams() {
+    return dataservice.getTeams()
+    .then(function(data) {
+      $scope.teams = data.teams;
+      return $scope.teams;
+    });
+  }
 
   function showTabDialog() {
     $mdDialog.show({
