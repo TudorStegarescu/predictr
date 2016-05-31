@@ -6,7 +6,9 @@ angular.module('myApp', [
   'ngMaterial',
   'firebase',
   'myApp.betting',
+  'myApp.dataservice',
   'myApp.frontPage',
+  'myApp.menu',
   'myApp.teams',
   'myApp.userProfile'
 ])

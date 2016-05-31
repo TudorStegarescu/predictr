@@ -17,40 +17,7 @@
 </head>
 <body>
 
-  <md-toolbar md-scroll-shrink ng-if="true">
-    <div class="md-toolbar-tools">
-      <h3>
-        <span>Predictr</span>
-      </h3>
-      <div class="menus" layout-wrap layout="row" layout-fill layout-align="space-between center" style="min-height:100px;">
-        <div layout="column" flex="15" flex-sm="100" layout-align="center center">
-          <md-button ui-sref="frontpage" class="md-raised md-primary" >Frontpage</md-button>
-        </div>
-        <div layout="column" flex="15" flex-sm="100" layout-align="center center">
-          <md-button ui-sref="teams" class="md-raised md-primary" >Teams</md-button>
-        </div>
-        <div layout="column" flex="15" flex-sm="100" layout-align="center center">
-          <md-button ui-sref="betting" class="md-raised md-primary" >Betting</md-button>
-        </div>
-        <div ng-show="loggedIn" layout="column" flex="15" flex-sm="100" layout-align="center center">
-          <md-button ui-sref="user" class="md-raised md-primary" >User profile</md-button>
-        </div>
-        <div ng-show="!loggedIn" layout="column" flex="15" flex-sm="100" layout-align="center center">
-          <md-button ui-sref="signin" class="md-raised md-primary" >Sign in</md-button>
-        </div>
-        <div ng-show="!loggedIn" layout="column" flex="15" flex-sm="100" layout-align="center center">
-          <md-button ui-sref="signup" class="md-raised md-primary" >Sign up</md-button>
-        </div>
-        <div ng-show="loggedIn" layout="column" flex="15" flex-sm="100" layout-align="center center">
-          <md-button ng-click="logout()" class="md-raised md-primary" >Log out</md-button>
-        </div>
-      </div>
-    </div>
-  </md-toolbar>
-
-  <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
+  <predictr-menu></predictr-menu>
 
   <div ui-view></div>
   <script src="../node_modules/angular/angular.js"></script>
@@ -68,11 +35,13 @@
   <script src="betting/betting.js"></script>
   <script src="frontpage/frontpage.js"></script>
   <script src="services.js"></script>
-  <script src="components/firebase.utils.js"></script>
-  <script src="user/user.js"></script>
-  <script src="teams/teams.js"></script>
+  <script src="data/dataService.js"></script>
   <script src="user/userService.js"></script>
   <script src="auth/authService.js"></script>
+  <script src="components/firebase.utils.js"></script>
+  <script src="menu/menu.js"></script>
+  <script src="user/user.js"></script>
+  <script src="teams/teams.js"></script>
   <script src="auth/authController.js"></script>
 
 </body>
