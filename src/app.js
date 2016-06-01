@@ -17,8 +17,8 @@ angular.module('myApp', [
 
 .config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
-    .primaryPalette('blue')
-    .accentPalette('light-blue');
+    .primaryPalette('deep-orange') /* blue-grey*/
+    .accentPalette('orange');
 })
 .config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/frontpage");

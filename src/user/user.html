@@ -4,20 +4,23 @@
   <md-content class="l-content">
     <h4>User profile</h4>
     <md-tabs md-dynamic-height md-border-bottom>
-      <md-tab label="First Name">
+      <md-tab label="Bio">
         <md-content class="md-padding">
-          <h4 class="md-subhead">{{profile.firstname}}</h4>
+            <h4 class="md-subhead">Name:  {{profile.firstname +" "+ profile.lastname}}</h4>
+            <h4 class="md-subhead">Email:  <a href="mailto:{{profile.email}}">{{profile.email}}</a></h4>
             <br />
         </md-content>
       </md-tab>
-      <md-tab label="Last Name">
+      <md-tab label="Profile">
         <md-content class="md-padding">
-          <h4 class="md-subhead">{{profile.lastname}}</h4>
+            <h4 class="md-subhead">Favourite team: {{profile.lastname}}</h4>
+            <h4 class="md-subhead">Team points: {{120}}</h4>
+            <h4 class="md-subhead">My points: {{44}}</h4>
         </md-content>
       </md-tab>
-      <md-tab label="Email">
+      <md-tab label="Log Out">
         <md-content class="md-padding">
-          <h4 class="md-subhead"><a href="mailto:{{profile.email}}">{{profile.email}}</a></h4>
+          <!--<h4 class="md-subhead"><a href="mailto:{{profile.email}}">{{profile.email}}</a></h4>-->
         </md-content>
       </md-tab>
       <md-tab label="Favourite team">

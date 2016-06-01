@@ -99,3 +99,25 @@ body {
 .md-dialog-container  .md-dialog {
 	min-width: 500px;
 }
+
+.teamsInput th input {
+    font-size: 90%;
+    border-top: 0px;
+    border-right: 0px;
+    border-left: 0px;
+}
+
+.teamsInput th input:focus {
+    outline-color: transparent;
+}
+
+.alignCenter tr td {
+    text-align: center;
+}
+
+.contentSeparator {
+    background-color: #EEE;
+    height: 5px;
+    margin: 0px auto;
+    width: 700px;
+}
