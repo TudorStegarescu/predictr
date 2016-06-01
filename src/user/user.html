@@ -19,7 +19,14 @@
         <md-content class="md-padding">
           <h4 class="md-subhead"><a href="mailto:{{profile.email}}">{{profile.email}}</a></h4>
         </md-content>
-        <button ng-click="logout()">Log Out</button>
+      </md-tab>
+      <md-tab label="Favourite team">
+        <md-content class="md-padding">
+
+          <h2 class="md-h2">{{favouriteTeam.name}}</h2>
+          <img ng-src="{{favouriteTeam.crestUrl}}" alt="Description"  width='70'/>
+          <h3>Squad market value: {{favouriteTeam.squadMarketValue}}</h3>
+        </md-content>
       </md-tab>
     </md-tabs>
   </md-content>

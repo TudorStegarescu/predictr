@@ -8,10 +8,10 @@
 		  $mdIconProvider.fontSet('md', 'material-icons');
 		})
 		.controller('listTeams', function ($scope, $http, $q) {
-		  var teams = $http.get('data/teams.json');
-
+		  var teams = $http.get('http://api.football-data.org/v1/soccerseasons/398/teams',
+															{headers: {'X-Auth-Token': '822fca9c9da2416592e3e0a8ac86c239'}});
 		  teams.then(function(arrayOfResults) {
-		    $scope.teams = arrayOfResults.data;
+		    $scope.teams = arrayOfResults.data.teams;
 		  });
 		})
 		.controller('AuthController', AuthController);
