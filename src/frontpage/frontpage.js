@@ -4,11 +4,12 @@ angular.module('myApp.frontPage', [])
 
   .controller('frontPageCtrl', function ($scope, $http, $q) {
     var tokenHeader = {headers: {'X-Auth-Token': '822fca9c9da2416592e3e0a8ac86c239'}},
-        fixtures = $http.get('http://api.football-data.org/v1/soccerseasons/405/fixtures', tokenHeader),
+        fixtures = $http.get('http://api.football-data.org/v1/soccerseasons/398/fixtures', tokenHeader),
         teams = $http.get('http://api.football-data.org/v1/soccerseasons/405/teams', tokenHeader);
 
     $q.all([fixtures, teams]).then(function(arrayOfResults) {
       $scope.contacts = arrayOfResults[0].data.fixtures.slice(-40).reverse();
+        console.log(arrayOfResults);
     });
 
   })
