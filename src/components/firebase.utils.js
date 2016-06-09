@@ -2,7 +2,7 @@
 // a simple wrapper on Firebase and AngularFire to simplify deps and keep things DRY
 angular.module('firebase.utils', ['firebase'])
    .factory('fbutil', ['$window', 'FBURL', '$q', function($window, FBURL, $q) {
-      "use strict";
+      'use strict';
 
       var utils = {
         // convert a node or Firebase style callback to a future

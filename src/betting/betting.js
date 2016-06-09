@@ -17,26 +17,26 @@ angular.module('myApp.betting', ['firebase', 'firebase.utils'])
     var away = $scope.predicts.away;
     var home = $scope.predicts.home;
 
-    var ref = new Firebase("https://scorching-heat-8489.firebaseio.com/bets");
+    var ref = new Firebase('https://scorching-heat-8489.firebaseio.com/bets');
 
     ref.push({ away: away,home: home,emailId: user}).then(function(ref) {
     }, function(error) {
-      console.log("Error:", error);
+      console.log('Error:', error);
     });
-  }
+  };
 
   $scope.AddPost = function(){
     var title = $scope.article.title;
     var post = $scope.article.post;
 
-    var ref = new Firebase("https://scorching-heat-8489.firebaseio.com/bets");
+    var ref = new Firebase('https://scorching-heat-8489.firebaseio.com/bets');
 
     ref.push({ title: title,post: post,emailId: user}).then(function(firebaseObj) {
       // $location.path('/frontpage');
     }, function(error) {
-      console.log("Error:", error);
+      console.log('Error:', error);
     });
 
-  }
+  };
 
 });

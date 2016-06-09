@@ -9,12 +9,12 @@
 	function UserService($firebaseObject) {
 
 		function newUserRef(user) {
-			var ref = new Firebase("https://scorching-heat-8489.firebaseio.com/users/" + user.uid);
+			var ref = new Firebase('https://scorching-heat-8489.firebaseio.com/users/' + user.uid);
 			return $firebaseObject(ref);
 		}
 
 		function getUserData(user) {
-			var ref = new Firebase("https://scorching-heat-8489.firebaseio.com/users/" + user);
+			var ref = new Firebase('https://scorching-heat-8489.firebaseio.com/users/' + user);
 			return $firebaseObject(ref);
 		}
 

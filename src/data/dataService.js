@@ -19,7 +19,7 @@ function dataservice($http) {
     .catch(getTeamsFailed);
 
     function getTeamsFailed(error) {
-      logger.error('XHR Failed for getAvengers.' + error.data);
+      console.log.error('XHR Failed for getTeams.' + error.data);
     }
   }
 }
