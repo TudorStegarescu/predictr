@@ -55,7 +55,7 @@
 				vm.password = null;
 				$state.go('user');
 			}, function(error) {
-				console.log("there was an error! " + error);
+				console.log('there was an error! ' + error);
 			});
 		}
 

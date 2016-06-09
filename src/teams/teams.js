@@ -32,7 +32,7 @@ angular.module('myApp.teams', [])
     }, function() {
       $scope.status = 'You cancelled the dialog.';
     });
-  };
+  }
 
   $scope.send = function(team){
     $http.get(team._links.players.href, tokenHeader)
@@ -41,7 +41,7 @@ angular.module('myApp.teams', [])
       showTabDialog();
     });
   };
-})
+});
 
 function DialogController($rootScope, $scope, $mdDialog) {
 

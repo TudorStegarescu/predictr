@@ -21,7 +21,7 @@ angular.module('myApp', [
     .accentPalette('orange');
 })
 .config(function($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise("/frontpage");
+    $urlRouterProvider.otherwise('/frontpage');
     $stateProvider
       .state('betting', {
         url: '/betting',

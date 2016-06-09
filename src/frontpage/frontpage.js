@@ -16,12 +16,10 @@ angular.module('myApp.frontPage', [])
 
   .filter('checkStatus', function() {
 
-    // Create the return function and set the required parameter name to input
     return function(input, status) {
 
       var out = [];
 
-      // Using the angular.forEach method, go through the array of data and perform the operation of figuring out if the language is statically or dynamically typed.
       angular.forEach(input, function(language) {
 
         if (language.status === status) {
