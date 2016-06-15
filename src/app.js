@@ -8,7 +8,7 @@ angular.module('myApp', [
   'myApp.betting',
   'myApp.dataservice',
   'myApp.frontPage',
-  'myApp.menu',
+  'myApp.header',
   'myApp.teams',
   'myApp.userProfile'
 ])
@@ -17,8 +17,8 @@ angular.module('myApp', [
 
 .config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
-    .primaryPalette('deep-orange') /* blue-grey*/
-    .accentPalette('orange');
+    .primaryPalette('green')
+    .accentPalette('light-green');
 })
 .config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/frontpage');
@@ -43,10 +43,6 @@ angular.module('myApp', [
         templateUrl: 'user/user.html',
         controller: 'userProfile',
         resolve: {
-        // forces the page to wait for this promise to resolve before controller is loaded
-        // the controller can then inject `user` as a dependency. This could also be done
-        // in the controller, but this makes things cleaner (controller doesn't need to worry
-        // about auth status or timing of accessing data or displaying elements)
         user: ['Auth', function (Auth) {
           return Auth.$waitForAuth();
         }]
