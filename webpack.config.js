@@ -14,6 +14,7 @@ module.exports = {
           './src/user/userService.js',
           './src/auth/authService.js',
           './src/components/firebase.utils.js',
+          './src/shared/footer/footer.js',
           './src/menu/menu.js',
           './src/user/user.js',
           './src/teams/teams.js',
