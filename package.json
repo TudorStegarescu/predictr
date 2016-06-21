@@ -93,6 +93,7 @@
     "angular-aria": "~1.5.5",
     "angular-material": "~1.0.8",
     "angular-messages": "~1.5.5",
+    "angular-resource": "^1.5.7",
     "angular-ui-router": "~0.2.18",
     "angularfire": "~1.2.0",
     "body-parser": "^1.15.2",
