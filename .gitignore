@@ -3,7 +3,9 @@ logs/*
 node_modules/
 bower_components/
 *.css
+.tmp/
 tmp
+*.log
 .DS_Store
 .idea
 bundle.js
