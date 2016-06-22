@@ -1,3 +1,9 @@
+'use strict'
+
+// Set default environment variables
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+process.env.NODE_CONFIG_DIR = __dirname + '/config/';
+
 var express = require('express'),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser');
@@ -10,7 +16,7 @@ var Fixture = require('./server/fixtures/fixtureModel');
 
 var app = express();
 
-var port = process.env.PORT || 8000;
+var port = process.env.PORT || 3002;
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());

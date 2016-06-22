@@ -15,6 +15,6 @@ gulp.task('clean', function() {
   return del(['coverage', '.tmp', 'dist']);
 });
 
-gulp.task('default', gulp.series('clean', gulp.parallel(['client:default'])));
+gulp.task('default', gulp.series('clean', gulp.parallel(['server:default', 'client:default'])));
 gulp.task('test', gulp.parallel(['server:test']));
 gulp.task('dist', gulp.series('clean', gulp.parallel(['server:dist', 'client:dist'])));

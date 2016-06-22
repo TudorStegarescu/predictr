@@ -8,8 +8,7 @@ angular.module('myApp.frontPage', [])
   teams = $http.get('http://api.football-data.org/v1/soccerseasons/405/teams', tokenHeader);
 
   $q.all([fixtures, teams]).then(function(arrayOfResults) {
-    $scope.contacts = arrayOfResults[0].data.fixtures.slice(-40).reverse();
-    console.log(arrayOfResults);
+    $scope.contacts = arrayOfResults[0].data[0].fixtures.slice(-40).reverse();
   });
 
 })
