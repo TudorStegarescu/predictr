@@ -1,27 +1,19 @@
-'use strict';
+(function () {
 
-// Declare app level module which depends on views, and components
-angular.module('myApp', [
-  'ui.router',
-  'ngMaterial',
-  'firebase',
-  'myApp.betting',
-  'myApp.dataservice',
-  'myApp.frontPage',
-  'myApp.menu',
-  'myApp.teams',
-  'myApp.userProfile'
-])
+  angular.module('myApp', [
+    'ui.router',
+    'ngMaterial',
+    'firebase',
+    'myApp.auth',
+    'myApp.betting',
+    'myApp.dataservice',
+    'myApp.frontPage',
+    'myApp.menu',
+    'myApp.teams',
+    'myApp.userProfile'
+  ]);
 
-.constant('FBURL', 'https://scorching-heat-8489.firebaseio.com')
-
-.config(function($mdThemingProvider) {
-  $mdThemingProvider.theme('default')
-    .primaryPalette('deep-orange') /* blue-grey*/
-    .accentPalette('orange');
-})
-.config(function($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/frontpage');
+  function config ($stateProvider, $locationProvider, $mdThemingProvider) {
     $stateProvider
       .state('betting', {
         url: '/betting',
@@ -41,16 +33,7 @@ angular.module('myApp', [
       .state('user', {
         url: '/user',
         templateUrl: 'user/user.html',
-        controller: 'userProfile',
-        resolve: {
-        // forces the page to wait for this promise to resolve before controller is loaded
-        // the controller can then inject `user` as a dependency. This could also be done
-        // in the controller, but this makes things cleaner (controller doesn't need to worry
-        // about auth status or timing of accessing data or displaying elements)
-        user: ['Auth', function (Auth) {
-          return Auth.$waitForAuth();
-        }]
-      }
+        controller: 'userProfileCtrl as vm',
       })
       .state('signin', {
         url: '/signin',
@@ -60,7 +43,7 @@ angular.module('myApp', [
       .state('signup', {
         url: '/signup',
         templateUrl: 'auth/signupView.html',
-        controller: 'AuthController as auth'
+        controller: 'AuthController as vm'
       })
       .state('status', {
         url: '/status',
@@ -72,10 +55,27 @@ angular.module('myApp', [
         templateUrl: 'teams/teams.html',
         controller: 'Teams'
       });
-    })
-    .run(['$rootScope', 'Auth', function($rootScope, Auth) {
-    // track status of authentication
-    Auth.$onAuth(function(user) {
-      $rootScope.loggedIn = !!user;
+
+
+    // use the HTML5 History API
+    $locationProvider.html5Mode(true);
+
+    $mdThemingProvider.theme('default')
+      .primaryPalette('deep-orange') /* blue-grey*/
+      .accentPalette('orange');
+  }
+
+  function run($rootScope, $location, authentication) {
+    $rootScope.$on('$routeChangeStart', function(event, nextRoute, currentRoute) {
+      if ($location.path() === '/profile' && !authentication.isLoggedIn()) {
+        $location.path('/');
+      }
     });
-  }]);
+  }
+
+  angular
+    .module('myApp')
+    .config(['$stateProvider', '$locationProvider', '$mdThemingProvider', config])
+    .run(['$rootScope', '$location', 'authentication', run]);
+
+})();

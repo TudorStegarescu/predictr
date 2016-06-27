@@ -3,77 +3,41 @@
 	'use strict';
 
 	angular
-		.module('myApp')
-		.config(function($mdIconProvider) {
-		  $mdIconProvider.fontSet('md', 'material-icons');
-		})
-		.controller('listTeams', function ($scope, $http, $q) {
-		  var teams = $http.get('http://api.football-data.org/v1/soccerseasons/398/teams',
-															{headers: {'X-Auth-Token': '822fca9c9da2416592e3e0a8ac86c239'}});
-		  teams.then(function(arrayOfResults) {
-		    $scope.teams = arrayOfResults.data.teams;
-		  });
-		})
-		.controller('AuthController', AuthController);
+	.module('myApp.auth', ['ngMaterial'])
+	.config(function($mdIconProvider) {
+		$mdIconProvider.fontSet('md', 'material-icons');
+	})
+	.controller('listTeams', function ($scope, $http, $q) {
+		var teams = $http.get('http://api.football-data.org/v1/soccerseasons/398/teams',
+		{headers: {'X-Auth-Token': '822fca9c9da2416592e3e0a8ac86c239'}});
+		teams.then(function(arrayOfResults) {
+			$scope.teams = arrayOfResults.data.teams;
+		});
+	})
+	.controller('AuthController', AuthController);
 
-	function AuthController($rootScope, Auth, User, $state) {
+	function AuthController($rootScope, $state, $location, authentication) {
 
 		var vm = this;
 
-		vm.createUser = createUser;
-		vm.login = login;
+		vm.credentials = {
+			name : "",
+			email : "",
+			password : ""
+		};
 
-		function createUser() {
-
-			// If there is already a user logged in,
-			// log them out before proceeding
-			Auth.$unauth();
-
-			Auth.$createUser({
-				email: vm.email,
-				password: vm.password
-			}).then(function(userData) {
-				saveUser(userData);
-				login()
-			}).catch(function(error) {
-				vm.error = error;
+		vm.onSubmit = function () {
+			console.log('Submitting registration');
+			authentication
+			.register(vm.credentials)
+			.error(function(err){
+				alert(err);
+			})
+			.then(function(){
+				$location.path('user');
 			});
-		}
+		};
 
-		function saveUser(userData) {
-
-			var user = User.newUserRef(userData);
-					user.firstname = vm.firstname;
-					user.lastname = vm.lastname;
-					user.email = vm.email;
-					user.team = vm.team;
-
-			user.$save().then(function(success) {
-				vm.firstname = null;
-				vm.lastname = null;
-				vm.email = null;
-				vm.password = null;
-				$state.go('user');
-			}, function(error) {
-				console.log('there was an error! ' + error);
-			});
-		}
-
-		function login() {
-
-			Auth.$authWithPassword({
-
-				email: vm.email,
-				password: vm.password
-			}).then(function(data) {
-				vm.email = null;
-				vm.password = null;
-				$state.go('user');
-				//console.info("Authenticated successfully with payload:", data);
-			}).catch(function(error) {
-				console.log(error);
-			});
-		}
 	}
 
 })();

@@ -1,13 +1,11 @@
 'use strict';
 
-angular.module('myApp.userProfile',['ngMaterial', 'firebase', 'firebase.utils'])
-.controller('userProfile',
-function ($rootScope, $scope, fbutil, user, $location, $firebaseObject, Auth, dataservice) {
+angular.module('myApp.userProfile',['ngMaterial'])
+.controller('userProfileCtrl',
+function ($rootScope, $scope, $location, myAppData, dataservice) {
 
-  var unbind, team, favouriteTeam;
-  var profile = $firebaseObject(fbutil.ref('users', user.uid));
-
-  profile.$bindTo($rootScope, 'profile').then(function(ub) { unbind = ub; });
+  var unbind, team, favouriteTeam, profile;
+  var vm = this;
 
   activate();
   function activate() {
@@ -32,11 +30,14 @@ function ($rootScope, $scope, fbutil, user, $location, $firebaseObject, Auth, da
     });
   }
 
-  $rootScope.logout = function() {
-    if( unbind ) { unbind(); }
-    profile.$destroy();
-    Auth.$unauth();
-    $location.path('/frontpage');
-  };
+  vm.user = {};
+
+  myAppData.getProfile()
+  .success(function(data) {
+    vm.user = data;
+  })
+  .error(function (e) {
+    console.log(e);
+  });
 
 });

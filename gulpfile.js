@@ -1,25 +1,63 @@
 var gulp = require('gulp'),
+    gutil = require('gulp-util'),
+    concat = require('gulp-concat'),
+    concatCss = require('gulp-concat-css'),
+    uglify  = require('gulp-uglify'),
     nodemon = require('gulp-nodemon'),
     gulpMocha = require('gulp-mocha'),
+    sourcemaps = require('gulp-sourcemaps'),
+    watch = require('gulp-watch'),
     env = require('gulp-env'),
+    del = require('del'),
     supertest = require('supertest');
 
-gulp.task('default', function() {
-  nodemon({
-    script: 'server.js',
-    ext: 'js',
-    env: {
-      PORT: 8000
+    input  = {
+      'javascript': ['./node_modules/angular/angular.js',
+                     './bower_components/firebase/firebase.js',
+                     './node_modules/angular-ui-router/release/angular-ui-router.min.js',
+                     './node_modules/angularfire/dist/angularfire.min.js',
+                     './node_modules/angular-animate/angular-animate.min.js',
+                     './node_modules/angular-aria/angular-aria.min.js',
+                     './node_modules/angular-material/angular-material.min.js',
+                     './node_modules/angular-messages/angular-messages.min.js',
+                     'src/*.js',
+                     'src/**/*.js'],
+      'css' : ['./node_modules/angular-material/angular-material.min.css',
+               './node_modules/font-awesome/css/font-awesome.css',
+               './src/assets/css/app.css'
+      ]
     },
-    ignore: ['./node_modules/**']
-  })
-  .on('restart', function(){
-    console.log('restarting');
-  });
-});
 
-gulp.task('test', function(){
-  env({vars: {ENV:'Test'}});
-  gulp.src('tests/*.js', {read: false})
+    output = {
+      'javascript': 'src/'
+    };
+
+    gulp.task('clean', function() {
+      return del(['coverage', '.tmp', 'dist', 'src/bundle.js']);
+    });
+
+    gulp.task('css', function () {
+      gulp.src(input.css)
+        .pipe(concatCss("styles/bundle.css"))
+        .pipe(gulp.dest('src'));
+    });
+
+    gulp.task('scripts', function() {
+      gulp.src(input.javascript)
+          .pipe(concat('./bundle.js'))
+          .pipe(gulp.dest('src'))
+    });
+
+    gulp.task('watch', function() {
+      watch(['src/auth/*.js', 'src/user/*.js'], function () {
+        gulp.start('scripts');
+      });
+    });
+
+    gulp.task('test', function(){
+      env({vars: {ENV:'Test'}});
+      gulp.src('tests/*.js', {read: false})
       .pipe(gulpMocha({reporter: 'nyan'}))
-});
+    });
+
+    gulp.task('default', ['scripts']);

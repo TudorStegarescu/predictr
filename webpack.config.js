@@ -12,11 +12,10 @@ module.exports = {
           './src/frontpage/frontpage.js',
           './src/data/dataService.js',
           './src/user/userService.js',
-          './src/auth/authService.js',
           './src/components/firebase.utils.js',
           './src/menu/menu.js',
-          './src/user/user.js',
           './src/teams/teams.js',
+          './src/user/user.js',
           './src/auth/authController.js'],
   output: {
     path: __dirname + "/src",
