@@ -10,7 +10,8 @@ exports.config = {
   // Spec patterns are relative to the location of the spec file. They may
   // include glob patterns.
   suites: {
-    homepage: 'src/frontpage/*spec.js'
+    homepage: 'src/frontpage/*spec.js',
+    login: 'src/auth/*spec.js'
   },
 
   // Options to be passed to Jasmine-node.
