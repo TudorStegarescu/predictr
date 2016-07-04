@@ -10,6 +10,7 @@ exports.config = {
   // Spec patterns are relative to the location of the spec file. They may
   // include glob patterns.
   suites: {
+    api: 'api-routes/*spec.js',
     homepage: 'src/frontpage/*spec.js',
     login: 'src/auth/*spec.js'
   },
