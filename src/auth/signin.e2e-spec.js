@@ -1,16 +1,37 @@
-// spec.js
-describe('Predict login', function() {
-  it('should enter login details', function() {
+var signInPage = function() {
+  var email = element(by.model('auth.email')),
+      pass = element(by.model('auth.password'));
+
+  this.get = function() {
     browser.get('http://localhost:8000/src/#/signin');
-    element(by.model('auth.email')).sendKeys('test@gmail.com');
-    element(by.model('auth.password')).sendKeys('test@gmail.com');
+  };
+
+  this.setEmail = function(emailaddr) {
+    email.sendKeys(emailaddr);
+  };
+
+  this.setPass = function(passwd) {
+    pass.sendKeys(passwd);
+  };
+
+  this.getGreeting = function() {
+    return greeting.getText();
+  };
+};
+
+describe('Predict signin', function() {
+  it('should enter login details', function() {
+    var signinPage = new signInPage();
+    signinPage.get();
+
+    signinPage.setEmail('test@gmail.com');
+
+    signinPage.setPass('test@gmail.com');
 
     element(by.css('.submit')).click();
 
     var EC = protractor.ExpectedConditions;
-    // Waits for the element h4 to be present on the dom and then check the expectation
-
-    browser.wait(EC.presenceOf($('h4')), 5000);
+        browser.wait(EC.presenceOf($('h4')), 5000);
 
     expect(browser.getCurrentUrl()).toBe('http://localhost:8000/src/#/user');
 

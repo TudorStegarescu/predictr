@@ -13,11 +13,6 @@ function writeScreenShot(data, filename) {
 
       browser.get('http://localhost:8000/src/#/frontpage');
 
-      var el = element(by.css('.test'));
-      el.getText().then(function(text) {
-        console.log(text);
-      });
-
       expect(element(by.exactRepeater('contact in contacts')).isPresent())
       .toBe(true);
 
