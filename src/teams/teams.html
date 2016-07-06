@@ -11,7 +11,7 @@
     </thead>
     <tbody md-body class="md-body alignCenter">
       <!-- we can let ng-repeat sort the columns for us -->
-      <tr md-row ng-repeat="team in vm.teams | filter:name | filter:shortName | filter:squadMarketValue">
+      <tr md-row ng-repeat="team in teams | filter:name | filter:shortName | filter:squadMarketValue">
           <td md-cell><img ng-src="{{team.crestUrl}}" width="50" alt="Description" /></td>
           <!--<td md-cell ng-bind="team._links.fixtures.count"></td>-->
           <td md-cell ng-bind="team.name"></td>
