@@ -1,5 +1,4 @@
 'use strict';
-
 angular.module('myApp.frontPage', [])
 
 .controller('frontPageCtrl', function ($scope, $http, $q) {
