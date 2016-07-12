@@ -3,7 +3,7 @@
 angular.module('myApp.teams', [])
 
 .controller('Teams', function ($rootScope, $scope, $http, $q, $mdDialog, dataservice) {
-  var tokenHeader = {headers: {'X-Auth-Token': '822fca9c9da2416592e3e0a8ac86c239'}};
+  const tokenHeader = {headers: {'X-Auth-Token': '822fca9c9da2416592e3e0a8ac86c239'}};
 
   activate();
   function activate() {
