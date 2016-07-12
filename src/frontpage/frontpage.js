@@ -9,7 +9,6 @@ angular.module('myApp.frontPage', [])
 
     $q.all([fixtures, teams]).then(function(arrayOfResults) {
       $scope.contacts = arrayOfResults[0].data.fixtures.slice(-40).reverse();
-        console.log(arrayOfResults);
     });
 
   })

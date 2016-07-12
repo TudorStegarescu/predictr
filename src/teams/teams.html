@@ -1,23 +1,29 @@
-<md-table-container>
-  <table md-table style=" width: 500px; margin: 0 auto; padding-top: 200px;" class="ng-pristine ng-untouched ng-valid md-table ng-isolate-scope md-row-select">
-    <thead md-head class="md-head ng-scope ng-isolate-scope">
-        <tr md-row class="teamsInput">
-            <!--<th md-column md-numeric>Count</th>-->
-            <th md-column colspan="2"> <input ng-model="name" placeholder="sort by Team name" /></th>
-            <th md-column> <input ng-model="shortName" placeholder="sort by Short name" /></th>
-            <th md-column> <input ng-model="squadMarketValue" placeholder="sort by Market value" /></th>
-        </tr>
-        <tr md-row class="teamsInput"><th md-column colspan="4" style="height: 20px;"></th> </tr>
-    </thead>
-    <tbody md-body class="md-body alignCenter">
-      <!-- we can let ng-repeat sort the columns for us -->
-      <tr md-row ng-repeat="team in vm.teams | filter:name | filter:shortName | filter:squadMarketValue">
-          <td md-cell><img ng-src="{{team.crestUrl}}" width="50" alt="Description" /></td>
-          <!--<td md-cell ng-bind="team._links.fixtures.count"></td>-->
-          <td md-cell ng-bind="team.name"></td>
-          <td md-cell ng-bind="team.shortName"></td>
-          <td md-cell ng-bind="team.squadMarketValue"></td>
-        </tr>
-    </tbody>
-  </table>
-</md-table-container>
+<md-content class="l-content team-listing">
+  <md-list>
+    <md-header>
+      <h2>Teams</h2>
+      <div layout="row" layout-align="center center">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>First name</label>
+          <input ng-model="name">
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>First name</label>
+          <input ng-model="squadMarketValue">
+        </md-input-container>
+      </div>
+    </md-header>
+  <button ng-click="send(team)"
+          ng-repeat="team in teams | filter:name | filter:squadMarketValue"
+          class="md-no-style md-button md-ink-ripple"
+          type="button"
+          aria-label="Janet Perkins">
+
+    <md-list-item class="md-4-line"  layout="row" layout-align="start center" layout-padding>
+        <img ng-src="{{team.crestUrl}}" alt="Description"  width='70'/>
+        <h3>{{team.name}}</h3>
+        <h4>Market value:{{team.squadMarketValue}}</h4>
+    </md-list-item>
+   </button>
+ </md-list>
+ </md-content>
