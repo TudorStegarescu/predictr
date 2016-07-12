@@ -1,19 +1,25 @@
 (function () {
+angular.module('myApp', [
+  'ui.router',
+  'ngMaterial',
+  'firebase',
+  'myApp.betting',
+  'myApp.dataservice',
+  'myApp.frontPage',
+  'myApp.header',
+  'myApp.teams',
+  'myApp.userProfile'
+])
 
-  angular.module('myApp', [
-    'ui.router',
-    'ngMaterial',
-    'firebase',
-    'myApp.auth',
-    'myApp.betting',
-    'myApp.dataservice',
-    'myApp.frontPage',
-    'myApp.menu',
-    'myApp.teams',
-    'myApp.userProfile'
-  ]);
+.constant('FBURL', 'https://scorching-heat-8489.firebaseio.com')
 
-  function config ($stateProvider, $locationProvider, $mdThemingProvider) {
+.config(function($mdThemingProvider) {
+  $mdThemingProvider.theme('default')
+    .primaryPalette('green')
+    .accentPalette('light-green');
+})
+.config(function($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/frontpage');
     $stateProvider
       .state('betting', {
         url: '/betting',
@@ -33,7 +39,12 @@
       .state('user', {
         url: '/user',
         templateUrl: 'user/user.html',
-        controller: 'userProfileCtrl as vm',
+        controller: 'userProfile',
+        resolve: {
+        user: ['Auth', function (Auth) {
+          return Auth.$waitForAuth();
+        }]
+      }
       })
       .state('signin', {
         url: '/signin',
