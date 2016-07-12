@@ -2,14 +2,13 @@ var express = require('express');
 
 
 var routes = function(User){
-    var userRouter = express.Router();
+    var fixtureRouter = express.Router();
 
-    var userController = require('./controllers/userController')(User)
-    userRouter.route('/')
-        .post(userController.post)
-        .get(userController.get);
+    var fixtureController = require('./fixtureController')(User)
+    fixtureRouter.route('/')
+        .get(fixtureController.get);
 
-    userRouter.use('/:userId', function(req,res,next){
+    fixtureRouter.use('/:fixtureId', function(req,res,next){
         User.findById(req.params.userId, function(err,user){
             if(err)
                 res.status(500).send(err);
@@ -24,7 +23,7 @@ var routes = function(User){
             }
         });
     });
-    return userRouter;
+    return fixtureRouter;
 };
 
 module.exports = routes;

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
 
   There are some minor modifications to the default Express setup
@@ -85,6 +86,5 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-
 
 module.exports = app;

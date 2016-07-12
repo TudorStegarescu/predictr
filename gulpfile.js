@@ -1,3 +1,5 @@
+'use strict';
+
 var browserify = require('browserify'),
     buffer = require('vinyl-buffer'),
     gulp = require('gulp'),
@@ -37,6 +39,7 @@ gulp.task('browserify', ['copyHtml'], function () {
     .pipe(gulp.dest('src'));
 });
 
+<<<<<<< HEAD
     input  = {
       'javascript': ['./node_modules/angular/angular.js',
                      './bower_components/firebase/firebase.js',
