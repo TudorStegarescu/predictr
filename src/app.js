@@ -8,6 +8,8 @@ angular.module('myApp', [
   'myApp.betting',
   'myApp.dataservice',
   'myApp.frontPage',
+  'myApp.footer',
+  'myApp.menu',
   'myApp.header',
   'myApp.teams',
   'myApp.userProfile'
