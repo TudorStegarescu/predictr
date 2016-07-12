@@ -1,72 +1,90 @@
-'use strict';
+<<<<<<< HEAD
+/*
 
-// Set default environment variables
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-process.env.NODE_CONFIG_DIR = __dirname + '/config/';
+  There are some minor modifications to the default Express setup
+  Each is commented and marked with [SH] to make them easy to find
+
+ */
 
 var express = require('express');
-var config = require('config');
-var cors = require('cors');
+var path = require('path');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
+// [SH] Require Passport
+var passport = require('passport');
 
-/**
- * MongoDB configurations
- */
-var mongodbUrl = 'mongodb://' + config.DB_HOST + ':' + config.DB_PORT + '/' + config.DB_NAME;
+// [SH] Bring in the data model
+require('./models/db');
+// [SH] Bring in the Passport config after model is defined
+require('./config/passport');
 
-// Database options
-var dbOptions = {
-  server: {
-    socketOptions: {
-      keepAlive: 1
-    }
-  },
-  auto_reconnect: true
-};
 
-mongoose.connection.on('error', function(err) {
-  console.error('MongoDB Connection Error. Please make sure MongoDB is running. -> ' + err);
-});
-// Auto reconnect on disconnected
-mongoose.connection.on('disconnected', function() {
-  mongoose.connect(mongodbUrl, dbOptions);
-});
-// Connect to db
-mongoose.connect(mongodbUrl, dbOptions);
+// [SH] Bring in the routes for the API (delete the default routes)
+var routesApi = require('./routes/index');
 
-/**
- * Express app configurations
- */
 var app = express();
-var User = require('./user/userModel');
-var Fixture = require('./fixtures/fixtureModel');
 
+// uncomment after placing your favicon in /public
+//app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+// [SH] Set the app_client folder to serve static resources
+app.use(express.static(path.join(__dirname, '../node_modules')));
+app.use(express.static(path.join(__dirname, '../src')));
 
-var userRouter = require('./user/userRoutes.js')(User);
+app.use(express.static(__dirname + '../src'));
+app.use(express.static(__dirname + '../node_modules'));
 
-var fixtureRouter = require('./fixtures/fixtureRoutes.js')(Fixture);
+// [SH] Initialise Passport before using the route middleware
+app.use(passport.initialize());
 
-// Enable CORS
-app.use(cors());
+// [SH] Use the API routes when path starts with /api
+app.use('/api', routesApi);
 
-// Bootstrap routes
-app.use('/api/users', userRouter);
-app.use('/api/fixtures', fixtureRouter);
+app.use(function(req, res) {
+  res.sendFile(path.join(__dirname, '../src', 'index.html'));
+});
 
-// Static files
-app.use(express.static(__dirname + "/src"));
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+});
 
-// Once database open, start server
-mongoose.connection.once('open', function callback() {
-  console.log('Connection with database succeeded.');
-  app.listen(config.APP_PORT, function() {
-    console.log('app listening on port %d in %s mode', this.address().port, app.settings.env);
-  });
+// error handlers
+
+// [SH] Catch unauthorised errors
+app.use(function (err, req, res, next) {
+  if (err.name === 'UnauthorizedError') {
+    res.status(401);
+    res.json({"message" : err.name + ": " + err.message});
+  }
+});
+
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: err
+        });
+    });
+}
+
+// production error handler
+// no stacktraces leaked to user
+app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+        message: err.message,
+        error: {}
+    });
 });
 
 module.exports = app;

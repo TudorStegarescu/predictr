@@ -1,5 +1,5 @@
 <md-content class="l-content">
-  <h1 layout-fill>Register</h1>
+  <h1>Register</h1>
   <br/>
   <md-input-container class="md-icon-float md-block">
     <label>First Name</label>
@@ -14,7 +14,7 @@
   <md-input-container class="md-icon-float md-block">
     <label>Email</label>
     <md-icon md-font-set="material-icons"> mail_outline </md-icon>
-    <input ng-model="auth.email" type="text">
+    <input ng-model="vm.credentials.email" type="text">
   </md-input-container>
   <md-input-container class="md-icon-float md-block">
     <label>Password</label>
@@ -31,6 +31,6 @@
     </md-select>
   </md-input-container>
   <md-input-container class="md-icon-float md-block">
-    <md-button class="md-raised md-primary" ng-click="auth.createUser()">Register</md-button>
+    <md-button class="md-raised md-primary" ng-click="vm.onSubmit()">Register</md-button>
   </md-input-container>
 </md-content>

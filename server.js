@@ -14,9 +14,11 @@ var User = require('./server/user/userModel');
 
 var Fixture = require('./server/fixtures/fixtureModel');
 
+var routesApi = require('./server/index');
+
 var app = express();
 
-var port = process.env.PORT || 3002;
+var port = process.env.PORT || 8000;
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
@@ -27,6 +29,8 @@ fixtureRouter = require('./server/fixtures/fixtureRoutes.js')(Fixture);
 
 app.use('/api/users', userRouter);
 app.use('/api/fixtures', fixtureRouter);
+
+app.use('/api', routesApi);
 
 app.listen(port, function(req, res) {
   console.log('Running on port ' + port);

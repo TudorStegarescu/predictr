@@ -70,8 +70,8 @@
   "scripts": {
     "postinstall": "npm run scss",
     "scss": "node-sass --output-style compressed -o src/assets/css src/assets/scss/app.scss",
-    "start": "node ./node_modules/gulp/bin/gulp.js",
-    "server": "webpack-dev-server --inline --colors --progress --display-error-details --display-cached --port 3000  --content-base",
+    "start": "node ./bin/www",
+    "gulp": "node ./node_modules/gulp/bin/gulp.js",
     "pretest": "npm install",
     "test": "jasmine-node tests/userControllerTests.js",
     "test-single-run": "karma start karma.conf.js  --single-run",
@@ -108,12 +108,24 @@
     "angular-ui-router": "~0.2.18",
     "angularfire": "~1.2.0",
     "body-parser": "^1.15.2",
+<<<<<<< HEAD
+    "cookie-parser": "^1.4.3",
+=======
     "config": "^1.21.0",
+>>>>>>> development
     "express": "^4.13.4",
+    "express-jwt": "^3.4.0",
     "firebase": "~2.4.2",
     "font-awesome": "~4.6.1",
+<<<<<<< HEAD
+    "jsonwebtoken": "^7.0.1",
+=======
+>>>>>>> development
     "mongoose": "^4.4.20",
+    "morgan": "^1.7.0",
     "node-sass": "~3.7.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "should": "^9.0.0",
     "sinon": "^1.17.4"
   }
