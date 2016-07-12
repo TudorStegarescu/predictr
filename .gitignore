@@ -4,7 +4,9 @@ node_modules/
 bower_components/
 typings/
 *.css
+.tmp/
 tmp
+*.log
 .DS_Store
 .idea
 bundle.js
