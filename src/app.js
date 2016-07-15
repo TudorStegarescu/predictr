@@ -3,24 +3,17 @@ angular.module('myApp', [
   'ui.router',
   'ngMaterial',
   'firebase',
+  'myApp.auth',
   'myApp.betting',
   'myApp.dataservice',
   'myApp.frontPage',
   'myApp.footer',
-  'myApp.menu',
   'myApp.header',
   'myApp.teams',
   'myApp.userProfile'
 ])
 
-.constant('FBURL', 'https://scorching-heat-8489.firebaseio.com')
-
-.config(function($mdThemingProvider) {
-  $mdThemingProvider.theme('default')
-    .primaryPalette('green')
-    .accentPalette('light-green');
-})
-.config(function($stateProvider, $urlRouterProvider) {
+function config ($stateProvider, $locationProvider, $urlRouterProvider, $mdThemingProvider) {
     $urlRouterProvider.otherwise('/frontpage');
     $stateProvider
       .state('betting', {
@@ -88,7 +81,7 @@ angular.module('myApp', [
 
   angular
     .module('myApp')
-    .config(['$stateProvider', '$locationProvider', '$mdThemingProvider', config])
+    .config(['$stateProvider', '$locationProvider', '$urlRouterProvider', '$mdThemingProvider', config])
     .run(['$rootScope', '$location', 'authentication', run]);
 
 })();

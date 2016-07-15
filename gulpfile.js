@@ -2,19 +2,20 @@
 
 var browserify = require('browserify'),
     buffer = require('vinyl-buffer'),
+    concat = require('gulp-concat'),
+    concatCss = require('gulp-concat-css'),
+    del = require('del'),
     gulp = require('gulp'),
     nodemon = require('gulp-nodemon'),
     gulpMocha = require('gulp-mocha'),
     sourcemaps = require('gulp-sourcemaps'),
     watch = require('gulp-watch'),
     env = require('gulp-env'),
+    sass = require('gulp-sass'),
     source = require('vinyl-source-stream'),
     sourcemaps = require('gulp-sourcemaps'),
     supertest = require('supertest'),
-    tsify = require('tsify'),
-    paths = {
-        pages: ['src/*.html']
-    };
+    tsify = require('tsify');
 
 gulp.task('copyHtml', function () {
     return gulp.src(paths.pages)
@@ -39,8 +40,7 @@ gulp.task('browserify', ['copyHtml'], function () {
     .pipe(gulp.dest('src'));
 });
 
-<<<<<<< HEAD
-    input  = {
+  var input  = {
       'javascript': ['./node_modules/angular/angular.js',
                      './bower_components/firebase/firebase.js',
                      './node_modules/angular-ui-router/release/angular-ui-router.min.js',
@@ -50,10 +50,12 @@ gulp.task('browserify', ['copyHtml'], function () {
                      './node_modules/angular-material/angular-material.min.js',
                      './node_modules/angular-messages/angular-messages.min.js',
                      'src/*.js',
-                     'src/**/*.js'],
+                     'src/**/*.js',
+                     '!src/**/*spec.js'],
+      'sass' : 'src/assets/scss/app.scss',
       'css' : ['./node_modules/angular-material/angular-material.min.css',
                './node_modules/font-awesome/css/font-awesome.css',
-               './src/assets/css/app.css'
+               'src/assets/css/app.css'
       ]
     },
 
@@ -62,7 +64,14 @@ gulp.task('browserify', ['copyHtml'], function () {
     };
 
     gulp.task('clean', function() {
-      return del(['coverage', '.tmp', 'dist', 'src/bundle.js']);
+      return del(['coverage', '.tmp', 'dist', 'src/bundle.js', 'src/styles/bundle.css']);
+    });
+
+    gulp.task('sass', function(){
+      console.log(input.sass)
+      return gulp.src(input.sass)
+        .pipe(sass())
+        .pipe(gulp.dest('src/assets/css/'))
     });
 
     gulp.task('css', function () {
