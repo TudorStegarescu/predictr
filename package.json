@@ -74,6 +74,7 @@
     "postinstall": "npm run scss",
     "scss": "node-sass --output-style compressed -o src/assets/css src/assets/scss/app.scss",
     "start": "tsc && concurrently node ./server/app.js",
+    "st": "http-server -a localhost -p 8000 -c-1 ./src",    
     "gulp": "node ./node_modules/gulp/bin/gulp.js",
     "pretest": "npm install",
     "test": "jasmine-node tests/userControllerTests.js",
