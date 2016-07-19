@@ -1,4 +1,4 @@
-﻿var express = require('express');
+var express = require('express');
 var router = express.Router();
 
 // use session auth to secure the angular app files
@@ -16,6 +16,8 @@ router.get('/token', function (req, res) {
 });
 
 // serve angular app files from the '/app' route
-router.use('/', express.static('app'));
+// var src = path.join(__dirname, '/../../src');
+
+router.use('/', express.static(__dirname + '/src'));
 
 module.exports = router;
