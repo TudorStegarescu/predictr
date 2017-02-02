@@ -1,5 +1,13 @@
 <md-toolbar md-scroll-shrink ng-if="true">
   <div class="md-toolbar-tools" layout-wrap layout="row" >
+    <div layout="column" layout-wrap flex="100">
+      <div flex="50">
+        <h3><p>Predictr</p></H3>
+      </div>
+      <div flex="50">
+        <p>Weather in Paris: {{vm.weather}}</p>
+      </div>
+    </div>
     <div class="menus" layout-wrap layout="row" layout-fill layout-align="space-between center" style="min-height:100px;">
       <div layout="column" flex="15" flex-sm="100" layout-align="center center">
         <md-button ui-sref="frontpage" class="md-raised md-primary" >Frontpage</md-button>
